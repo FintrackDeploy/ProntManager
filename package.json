@@ -1,0 +1,1 @@
+{"name":"bezopasnyj-prompt","version":"1.0.0","private":true,"description":"Проверка запросов к ИИ на персональные данные (в браузере)","scripts":{"test":"node tests/run.js && node tests/ner.js","start":"npx --yes serve ."},"engines":{"node":">=18"}}

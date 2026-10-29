@@ -1,0 +1,1 @@
+{"name":"Безопасный промпт","short_name":"Безопасный промпт","description":"Проверка запросов к ИИ на персональные данные","lang":"ru","start_url":".","scope":".","display":"standalone","background_color":"#f4f3ef","theme_color":"#f4f3ef","icons":[{"src":"assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}

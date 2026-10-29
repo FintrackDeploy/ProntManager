@@ -1,0 +1,213 @@
+/* ---------------------------------------------------------------------------
+   Мастерская дипломов — дизайн-система
+   Идея: типографская мастерская. Холодная бумага, чернильно-синий, латунь.
+   Фирменный мотив — гильош (гравированная розетка, как на дипломах и банкнотах).
+--------------------------------------------------------------------------- */
+@font-face { font-family: "Old Standard TT"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/old-standard-tt-cyrillic-400-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Old Standard TT"; font-weight: 400; font-style: normal; font-display: swap; src: url("fonts/old-standard-tt-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Old Standard TT"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/old-standard-tt-cyrillic-700-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Old Standard TT"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/old-standard-tt-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Old Standard TT"; font-weight: 400; font-style: italic; font-display: swap; src: url("fonts/old-standard-tt-cyrillic-400-italic.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Onest"; font-weight: 100 900; font-style: normal; font-display: swap; src: url("fonts/onest-cyrillic-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Onest"; font-weight: 100 900; font-style: normal; font-display: swap; src: url("fonts/onest-latin-wght-normal.woff2") format("woff2-variations"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  --ink: #0f1d36;
+  --ink-2: #3a4663;
+  --ink-3: #6a7592;
+  --paper: #f0f2f4;
+  --paper-2: #e6e9ed;
+  --surface: #ffffff;
+  --desk: #d9dee5;
+  --line: #dde1e8;
+  --line-2: #c8cfda;
+  --brass: #a67c2a;
+  --brass-2: #86631c;
+  --brass-soft: #f2e8cf;
+  --navy-soft: #e8edf6;
+  --ok: #1f7a55;     --ok-bg: #e5f4ec;
+  --warn: #8a5a0b;   --warn-bg: #fbf0d8;
+  --err: #b0332b;    --err-bg: #fbe9e7;
+
+  /* цвета групп полей на бланке */
+  --g0: #2859c5; --g1: #b07a14; --g2: #14806d; --g3: #8b3b8f;
+
+  --serif: "Old Standard TT", "PT Serif", Georgia, "Times New Roman", serif;
+  --sans: "Onest", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --r-s: 6px; --r-m: 10px; --r-l: 16px;
+  --shadow-s: 0 1px 2px rgba(15,29,54,.06);
+  --shadow-m: 0 6px 20px rgba(15,29,54,.08), 0 1px 3px rgba(15,29,54,.06);
+  --shadow-l: 0 22px 60px rgba(15,29,54,.22);
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0; font-family: var(--sans); color: var(--ink); background: var(--paper);
+  font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; margin: 0; color: var(--ink); letter-spacing: -.005em; }
+p { margin: 0; }
+button { font-family: inherit; }
+input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+a { color: var(--g0); }
+::selection { background: var(--brass-soft); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #c3cad6; border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: #a9b3c3; background-clip: padding-box; border: 2px solid transparent; }
+:focus-visible { outline: 2px solid var(--g0); outline-offset: 2px; }
+
+.ico { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.ico.lg { width: 22px; height: 22px; }
+
+/* ---------- кнопки ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 38px; padding: 8px 16px; border-radius: var(--r-s);
+  border: 1px solid var(--ink); background: var(--ink); color: #fff;
+  font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
+  transition: background .15s, border-color .15s, color .15s, box-shadow .15s, transform .08s;
+}
+.btn:hover { background: #1b2d52; border-color: #1b2d52; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn.disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.btn.secondary { background: var(--surface); color: var(--ink); border-color: var(--line-2); }
+.btn.secondary:hover { background: var(--navy-soft); border-color: #aab6cc; }
+.btn.brass { background: var(--brass); border-color: var(--brass); color: #fff; }
+.btn.brass:hover { background: var(--brass-2); border-color: var(--brass-2); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--ink-2); padding-left: 10px; padding-right: 10px; }
+.btn.ghost:hover { background: rgba(15,29,54,.06); color: var(--ink); }
+.btn.danger { background: var(--surface); color: var(--err); border-color: #e3b9b5; }
+.btn.danger:hover { background: var(--err-bg); border-color: #d6918b; }
+.btn.sm { min-height: 30px; padding: 4px 10px; font-size: 12px; gap: 6px; }
+.btn.icon { padding: 0; width: 34px; min-height: 34px; }
+.btn.icon.sm { width: 28px; min-height: 28px; }
+.btn.lg { min-height: 46px; padding: 10px 22px; font-size: 14px; }
+
+/* ---------- поля ---------- */
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field > label, .lbl { font-size: 12px; color: var(--ink-3); font-weight: 600; }
+.field input[type="text"], .field input[type="number"], .field select, .field textarea, .input {
+  padding: 8px 10px; min-height: 36px; border: 1px solid var(--line-2); border-radius: var(--r-s);
+  background: #fff; color: var(--ink); width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus, .field select:focus, .input:focus { outline: none; border-color: var(--g0); box-shadow: 0 0 0 3px rgba(40,89,197,.14); }
+.field input[type="color"] { width: 100%; height: 36px; padding: 3px; border: 1px solid var(--line-2); border-radius: var(--r-s); background: #fff; cursor: pointer; }
+.field input[type="range"] { accent-color: var(--brass); width: 100%; }
+.hint { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
+
+/* переключатель */
+.switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12.5px; color: var(--ink-2); user-select: none; }
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+.switch .track { width: 30px; height: 18px; border-radius: 999px; background: #c3cad6; position: relative; transition: background .15s; flex: none; }
+.switch .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .18s var(--ease); }
+.switch input:checked + .track { background: var(--ink); }
+.switch input:checked + .track::after { transform: translateX(12px); }
+.switch input:focus-visible + .track { outline: 2px solid var(--g0); outline-offset: 2px; }
+
+/* сегментный выбор */
+.seg { display: inline-flex; background: var(--paper-2); border-radius: var(--r-s); padding: 2px; gap: 2px; }
+.seg button { border: 0; background: transparent; padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: 600; color: var(--ink-3); cursor: pointer; min-height: 28px; }
+.seg button.on { background: #fff; color: var(--ink); box-shadow: var(--shadow-s); }
+
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; background: var(--paper-2); color: var(--ink-2); }
+.pill.ok { background: var(--ok-bg); color: var(--ok); }
+.pill.err { background: var(--err-bg); color: var(--err); }
+.pill.warn { background: var(--warn-bg); color: var(--warn); }
+
+.spin { width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(15,29,54,.18); border-top-color: var(--ink); animation: spin .7s linear infinite; display: inline-block; flex: none; }
+.btn .spin { border-color: rgba(255,255,255,.35); border-top-color: #fff; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- уведомления ---------- */
+.toast-wrap { position: fixed; right: 20px; bottom: 20px; z-index: 600; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; pointer-events: none; }
+.toast { pointer-events: auto; display: flex; gap: 10px; align-items: flex-start; background: var(--ink); color: #fff; padding: 11px 14px; border-radius: var(--r-m); font-size: 13px; box-shadow: var(--shadow-l); max-width: 400px; animation: toast-in .25s var(--ease); border-left: 3px solid var(--brass); }
+.toast.err { background: #3a1613; border-left-color: #e0645a; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* ---------- окна ---------- */
+.modal-veil { position: fixed; inset: 0; background: rgba(10,18,36,.55); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 500; padding: 16px; animation: fade .18s; }
+.modal { background: var(--surface); border-radius: var(--r-l); box-shadow: var(--shadow-l); width: 460px; max-width: 100%; padding: 26px; display: flex; flex-direction: column; gap: 16px; animation: pop .22s var(--ease); max-height: 92vh; overflow: auto; }
+.modal h3 { font-size: 22px; }
+.modal .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+
+.empty {
+  border: 1.5px dashed var(--line-2); border-radius: var(--r-l); padding: 44px 24px;
+  text-align: center; color: var(--ink-2); background: rgba(255,255,255,.55);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.empty h4 { font-size: 20px; }
+.empty .hint { max-width: 460px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+/* ==========================================================================
+   REDESIGN 2026 — спокойная редакционная палитра
+   Бумага / графит / тёплый акцент. Цвет используется как сигнал, а не декор.
+========================================================================== */
+:root {
+  --ink: #20252b;
+  --ink-2: #515861;
+  --ink-3: #858c93;
+  --paper: #f4f3ef;
+  --paper-2: #ebe9e3;
+  --surface: #fffefa;
+  --desk: #e7e5df;
+  --line: #e1dfd9;
+  --line-2: #cbc8c0;
+
+  --brass: #9a7440;
+  --brass-2: #76562d;
+  --brass-soft: #f2eadc;
+  --navy-soft: #ecebe7;
+
+  --ok: #2f7356; --ok-bg: #e8f1eb;
+  --warn: #8a651d; --warn-bg: #f8f0df;
+  --err: #a64036; --err-bg: #f8eae7;
+
+  --g0: #3f6380; --g1: #9a7440; --g2: #4c7a6b; --g3: #80637c;
+
+  --r-s: 8px; --r-m: 12px; --r-l: 18px;
+  --shadow-s: 0 1px 2px rgba(32,37,43,.04);
+  --shadow-m: 0 8px 24px rgba(32,37,43,.07), 0 1px 3px rgba(32,37,43,.05);
+  --shadow-l: 0 24px 70px rgba(32,37,43,.18);
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% -20%, rgba(154,116,64,.045), transparent 34rem),
+    var(--paper);
+}
+
+.btn {
+  border-radius: 8px;
+  min-height: 40px;
+  padding: 8px 15px;
+  letter-spacing: .005em;
+}
+.btn:hover { background: #2a3037; border-color: #2a3037; }
+.btn.brass { background: var(--ink); border-color: var(--ink); }
+.btn.brass:hover { background: #343b43; border-color: #343b43; }
+.btn.secondary { background: var(--surface); }
+.btn.secondary:hover { background: #f1f0ec; border-color: #b9b6ae; }
+.btn.ghost:hover { background: #eeece7; }
+.btn.danger { color: var(--err); }
+
+.field input[type="text"], .field input[type="number"], .field select,
+.field textarea, .input {
+  border-radius: 8px;
+  border-color: #d4d1c9;
+  background: #fff;
+}
+.field input:focus, .field select:focus, .input:focus {
+  border-color: #7b8791;
+  box-shadow: 0 0 0 3px rgba(63,99,128,.11);
+}

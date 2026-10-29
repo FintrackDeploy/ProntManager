@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; manifest-src 'self'; connect-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#f4f3ef">
+<meta name="description" content="Проверка запросов к ИИ на персональные данные и лишние подробности. Работает в браузере, текст никуда не передаётся.">
+<meta property="og:title" content="Безопасный промпт"><meta property="og:description" content="Проверьте запрос к ИИ до отправки: персональные данные, риски и безопасная редакция. Всё в браузере.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/tokens.css"><link rel="stylesheet" href="assets/style.css">
+<title>Безопасный промпт — проверка запросов к ИИ</title></head><body>
+<a class="skip" href="#a">К проверке</a>
+<header class="topbar"><a class="brand" href="./"><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#20252b"/><path d="M24 9 11 14v10c0 9 5.5 15 13 18 7.5-3 13-9 13-18V14z" fill="#fffefa"/><path d="M24 12.5 14 16.4V24c0 7 4 11.7 10 14.4 6-2.7 10-7.4 10-14.4v-7.6z" fill="none" stroke="#c9a46a" stroke-width=".9"/><path d="m18.5 24.5 4 4 7.5-8.5" fill="none" stroke="#9a7440" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Безопасный <i>промпт</i></b><small>Проверка запросов к ИИ</small></span></a><span class="spacer"></span><span class="pill ok hide">Без передачи данных</span><a class="tlink" href="privacy.html">Приватность</a></header>
+<div class="wrap">
+<section class="intro"><div class="kick">Цифровая грамотность · ИИ в образовании</div><h1>Запрос к ИИ — <em>без лишних данных</em></h1><p class="lead">Вставьте текст запроса: найдём персональные данные и опасные подробности, объясним риск и предложим безопасную редакцию. Проверка идёт в вашем браузере.</p><ul class="chips"><li>Работает офлайн</li><li>Без регистрации</li><li>Без аналитики и сторонних CDN</li><li>Нейросеть на устройстве</li><li>8 критериев методики</li></ul></section>
+<main>
+<div class="warn"><b>Не вводите реальные персональные данные.</b> Анализатор может ошибаться и не гарантирует безопасность: результат нужно проверить самостоятельно.</div>
+<nav class="seg tabs" role="tablist" aria-label="Разделы"><button role="tab" aria-selected="true" data-t="a">Проверка</button><button role="tab" aria-selected="false" data-t="b">Тренажёр</button><button role="tab" aria-selected="false" data-t="d">Методика</button><button role="tab" aria-selected="false" data-t="c">О проекте</button></nav>
+
+<section id="a" class="panel">
+<label for="inp" class="lbl">Текст запроса</label>
+<textarea id="inp" placeholder="Вставьте запрос к ИИ или загрузите файл…"></textarea>
+<div class="row"><button class="btn" id="go">Проверить</button><button class="btn secondary" id="up">Загрузить .txt / .docx</button><button class="btn ghost" id="ex">Пример</button><button class="btn ghost" id="clr">Очистить</button><label class="switch"><input type="checkbox" id="nn" checked><span class="track"></span>Нейросеть</label><span class="pill" id="nns">Загрузка…</span><label class="switch"><input type="checkbox" id="live"><span class="track"></span>Проверять при вводе</label><span class="cnt" id="cnt">0 символов</span></div>
+<input type="file" id="fl" accept=".txt,.docx" hidden>
+<p class="hint">Файл читается только в вашем браузере. Ctrl+Enter — быстрая проверка.</p>
+<div id="res" aria-live="polite"></div>
+</section>
+
+<section id="b" class="panel" hidden>
+<h2>Тренажёр: найдите риски сами</h2>
+<p class="sub">Все примеры вымышленные. Отметьте риски, которые видите, затем сравните со своей проверкой анализатора и перепишите запрос безопаснее.</p>
+<div class="row"><label for="cs" class="lbl">Кейс:</label><select id="cs" class="input"></select></div>
+<div class="hl" id="ctext"></div>
+<h2>Какие критерии сработали?</h2><div id="cks"></div>
+<div class="row"><button class="btn" id="cmp">Сравнить с анализатором</button></div>
+<div id="cres" aria-live="polite"></div>
+<h2>Перепишите запрос сами</h2>
+<textarea id="mine" placeholder="Ваша безопасная редакция…"></textarea>
+<div class="row"><button class="btn secondary" id="mchk">Проверить мою редакцию</button></div>
+<div id="mres" aria-live="polite"></div>
+</section>
+
+<section id="d" class="panel" hidden>
+<h2>Методика: занятие на 30 минут</h2>
+<p class="sub">Черновик сценария для педагога. Перед использованием согласуйте с методистом учреждения образования.</p>
+<ol class="st"><li><b>Разбор (5 мин).</b> Покажите на проекторе запрос с рисками и проверьте его вместе с классом.</li><li><b>Тренажёр (10 мин).</b> В парах: отметить критерии в кейсе, сравнить с анализатором, обсудить расхождения.</li><li><b>Переписываем (10 мин).</b> Каждая пара составляет безопасную редакцию и проверяет её.</li><li><b>Рефлексия (5 мин).</b> Где анализатор ошибся и почему человек всё равно отвечает за результат.</li></ol>
+<h2>Пять вопросов перед отправкой в ИИ</h2>
+<ol class="st"><li>Нужны ли ИИ имена, контакты и адреса для этой задачи?</li><li>Можно ли узнать человека по сочетанию деталей: школа, класс, место, редкое обстоятельство?</li><li>Есть ли сведения о здоровье, семье, социальном положении?</li><li>Не прошу ли я ИИ поставить диагноз или принять решение о человеке?</li><li>Есть ли у меня право передавать этот материал и куда уходит запрос?</li></ol>
+<p class="hint">Используйте только вымышленные примеры. Не вводите данные реальных учащихся.</p>
+</section>
+
+<section id="c" class="panel" hidden>
+<h2>О проекте</h2>
+<p>«Безопасный промпт» учит готовить запросы к генеративному ИИ без лишних персональных и конфиденциальных сведений. Проверка идёт по восьми критериям методики проекта (критерии C1–C8).</p>
+<h2>Как это работает</h2>
+<p>Анализатор состоит из регулярных выражений с проверками (телефоны, email, идентификационный номер и паспорт РБ, банковские карты), словарей по категориям (здоровье, семья, школа, класс, населённый пункт и др.), эвристики для имён по словарю и правил сочетаний, которые определяют уровень риска. Для имён, организаций и мест используется нейросеть <b>Slovnet NER</b> (проект Natasha, лицензия MIT): свёрточная сеть с CRF-слоем и эмбеддингами Navec, обученная на новостных текстах. Она работает на вашем устройстве (около 14 МБ, загружается один раз) и дополняет правила. На разговорных текстах и редких именах она ошибается чаще. Внешний ИИ не используется.</p>
+<h2>Приватность</h2><p><a href="privacy.html">Подробнее на странице «Приватность»</a>.</p>
+<p>Страница работает без сети: политика безопасности браузера (CSP) разрешает обращаться только к собственному серверу, а код приложения не отправляет введённый текст. Текст не пишется в localStorage, cookies и базу, история не ведётся. Проверить это можно во вкладке «Сеть» (Network) инструментов разработчика.</p>
+<h2>Ограничения</h2>
+<p>Отсутствие находок не означает безопасность. Имена без словаря, нестандартные форматы, опечатки, эвфемизмы и косвенные признаки могут быть пропущены, а общие образовательные темы могут быть отмечены ошибочно. Результат — предварительная рекомендация, а не юридическое заключение и не гарантия анонимности. Безопасная редакция формируется шаблонными заменами, её нужно проверить самостоятельно. Показатели точности и полноты пока не измерялись.</p>
+<h2>Критерии методики</h2><div id="crit"></div><details><summary>C6. Перед использованием внешних ИИ-сервисов</summary><p>Выясните: в какой стране обрабатываются данные, кто получатель и какова его роль, на каком основании данные передаются, какие условия хранения и использования запросов, нужна ли оценка трансграничной передачи по Закону № 99-З. Не передавайте реальные персональные данные учащихся без такой проверки.</p></details>
+<p class="sub">Версия правил: 1.0. Нормативная сверка с pravo.by и ЭТАЛОН-ONLINE: <b>не проведена</b>, требуется до публикации. Форматы белорусских документов взяты из открытых описаний и требуют проверки.</p>
+</section>
+</main>
+<footer class="foot"><!-- Оператор сайта: укажите название организации и контакт. --><p>Оператор: [название организации], контакт: [e-mail]. · <a href="privacy.html">Приватность</a> · Версия 1.0. Открытый код, не является юридическим заключением.</p><p>Шрифты Old Standard TT и Onest, лицензия OFL; JSZip (MIT/GPL), нейросеть Slovnet и эмбеддинги Navec проекта Natasha (MIT), см. <code>assets/fonts</code>, <code>assets/vendor</code>, <code>assets/ner</code>.</p></footer>
+</div>
+<div class="toast-wrap" id="tw" role="status"></div>
+<script src="assets/vendor/jszip.min.js"></script><script src="assets/analyzer.js"></script><script src="assets/ner.js"></script><script src="assets/app.js"></script></body></html>

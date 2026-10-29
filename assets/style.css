@@ -1,0 +1,45 @@
+/* Безопасный промпт — интерфейс. Дизайн-система: tokens.css («Мастерская»). */
+body{font-size:15px}
+.topbar{height:60px;display:flex;align-items:center;gap:14px;padding:0 28px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:40}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand b{display:block;font-family:var(--serif);font-size:20px;line-height:1.1}.brand b i{color:var(--brass-2)}
+.brand small{display:block;font-size:11.5px;color:var(--ink-3)}
+.mark{width:36px;height:36px;flex:none}.spacer{flex:1}
+.tlink{color:var(--ink-2);font-size:13px;font-weight:500;text-decoration:none}.tlink:hover{color:var(--ink)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.intro{padding:46px 0 24px}
+.kick{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--brass-2)}
+.intro h1{font-size:clamp(2.1rem,5.6vw,3.4rem);line-height:1.06;margin:10px 0 14px}.intro h1 em{color:var(--brass-2)}
+.lead{color:var(--ink-2);font-size:17px;max-width:62ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:18px 0 0}
+.chips li{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:3px 13px;font-size:12.5px;color:var(--ink-2)}
+.chips li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--brass);margin-right:8px}
+.warn{border:1px solid #e4d3ae;border-left:4px solid var(--brass);background:var(--warn-bg);color:var(--ink);padding:11px 16px;margin:6px 0 16px;border-radius:var(--r-m)}
+.tabs{display:flex;width:100%}.tabs button{flex:1;min-height:42px;font-size:13.5px}
+.seg button[aria-selected=true]{background:#fff;color:var(--ink);box-shadow:var(--shadow-s)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:24px;box-shadow:var(--shadow-m);margin-top:14px}
+h2{font-size:21px;margin:24px 0 10px}.panel>h2:first-child{margin-top:0}
+.sub{color:var(--ink-3);margin:0 0 10px;font-size:13.5px}
+textarea{width:100%;min-height:170px;padding:14px;border:1px solid var(--line-2);border-radius:var(--r-m);background:#fff;font:inherit;line-height:1.6;resize:vertical}
+textarea:focus{outline:none;border-color:#7b8791;box-shadow:0 0 0 3px rgba(63,99,128,.11)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}.cnt{color:var(--ink-3);margin-left:auto;font-size:13px}
+.lvl{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--lc);border-radius:var(--r-m);padding:14px 18px;margin:20px 0 10px;animation:fade .3s}
+.lvl b{font-family:var(--serif);font-size:23px;color:var(--lc)}
+.L-critical{--lc:var(--err)}.L-high{--lc:#a35a14}.L-review{--lc:var(--warn)}.L-none{--lc:var(--g0)}
+.mt{float:right;display:flex;gap:4px;margin-top:8px}.mt i{width:24px;height:7px;border-radius:2px;background:var(--line)}.mt i.on{background:var(--lc)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:10px 0}
+.tile{background:#fff;border:1px solid var(--line);border-radius:var(--r-s);padding:8px 11px;font-size:13px;color:var(--ink-3)}
+.tile.on{background:var(--brass-soft);border-color:#d8c49b;color:var(--ink)}.tile b{color:var(--brass-2)}
+.hl{background:#fff;border:1px solid var(--line);padding:14px;white-space:pre-wrap;border-radius:var(--r-m);line-height:1.7}
+mark{color:inherit;padding:1px 3px;border-radius:4px;border-bottom:2px solid var(--brass)}
+.m1{background:#f3d9d5}.m2{background:#f4e6c8}.m3{background:#e7dcef}.m4{background:#d9e5ee}.m5{background:#f1ecc4}.m7{background:#e4e2dc}.m8{background:#f0d9e4}
+.card{background:#fff;border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:var(--r-s);padding:11px 15px;margin:8px 0}
+.card q{font-weight:700;color:var(--brass-2)}.card small{color:var(--ink-3)}
+.safe{background:var(--brass-soft);border:1px dashed #cdb27d;padding:14px;white-space:pre-wrap;border-radius:var(--r-m)}
+label.ck{display:block;padding:5px 0}details{margin:10px 0;background:#fff;border:1px solid var(--line);border-radius:var(--r-m);padding:9px 15px}summary{cursor:pointer;font-weight:600}
+ol.st{padding-left:20px}ol.st li{margin:6px 0}
+.ok{color:var(--ok);font-weight:600}.no{color:var(--err);font-weight:600}
+.foot{margin-top:40px;border-top:1px solid var(--line);padding:22px 0 44px;color:var(--ink-3);font-size:13px}.foot a{color:var(--ink-2)}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:900}
+@media(max-width:640px){.topbar{padding:0 14px}.tlink,.hide{display:none}.panel{padding:15px}.tabs button{padding:5px 4px;font-size:12.5px}}
+@media print{.topbar,.intro,.warn,.tabs,.foot,textarea,button,#a .row,#b,#c,#d{display:none!important}body{background:#fff}.panel{box-shadow:none;border:0}.lvl,mark{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
